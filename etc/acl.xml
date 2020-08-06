@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * ImranAli
+ * Copyright (C) 2020 ImranAli <imibrohi@gmail.com>
+ *
+ * @package ImranAli_Faq
+ * @copyright Copyright (c) 2020 ImranAli
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Imran Ali <imibrohi@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="ImranAli_Faq::menu" sortOrder="10" title="FAQ">
+					<resource id="ImranAli_Faq::Faq" sortOrder="10" title="Faq Management"/>
+					<resource id="ImranAli_Faq::FaqGroup" sortOrder="20" title="Faq Group Management"/>
+					<resource id="ImranAli_Faq::Configuration" sortOrder="30" title="Configuration" />
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

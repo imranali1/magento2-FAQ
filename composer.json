@@ -1,0 +1,25 @@
+{
+    "name": "imranali1/module-faq",
+    "description": "Magento2 FAQ Module",
+    "homepage": "https://github.com/imranali1/magento2-FAQ",
+    "type": "magento2-module",
+    "version": "2.0.0",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+          "name": "Imran Ali",
+          "email": "imibrohi@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/imranali1/magento2-FAQ/issues"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "ImranAli\\Faq\\": ""
+        }
+    }
+}

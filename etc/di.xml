@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * ImranAli
+ * Copyright (C) 2020 ImranAli <imibrohi@gmail.com>
+ *
+ * @package ImranAli_Faq
+ * @copyright Copyright (c) 2020 ImranAli
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Imran Ali <imibrohi@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="ImranAli\Faq\Api\FaqGroupRepositoryInterface" type="ImranAli\Faq\Model\FaqGroupRepository"/>
+	<preference for="ImranAli\Faq\Api\Data\FaqGroupInterface" type="ImranAli\Faq\Model\FaqGroup"/>
+	<preference for="ImranAli\Faq\Api\Data\FaqGroupSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="ImranAli\Faq\Model\ResourceModel\FaqGroup\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">prince_faqgroup</argument>
+			<argument name="resourceModel" xsi:type="string">ImranAli\Faq\Model\ResourceModel\FaqGroup\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="ImranAli_Faqgroup_grid_data_source" xsi:type="string">ImranAli\Faq\Model\ResourceModel\FaqGroup\Grid\Collection</item>
+				<item name="ImranAli_Faq_grid_data_source" xsi:type="string">ImranAli\Faq\Model\ResourceModel\Faq\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="ImranAli\Faq\Model\ResourceModel\Faq\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">prince_faq</argument>
+			<argument name="resourceModel" xsi:type="string">ImranAli\Faq\Model\ResourceModel\Faq\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="ImranAli\Faq\Block\Index\Index">
+		<arguments>
+			<argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+		</arguments>
+	</type>
+	<type name="ImranAli\Faq\Model\ImageUploader">
+		<arguments>
+			<argument name="baseTmpPath" xsi:type="string">faq/tmp/icon</argument>
+			<argument name="basePath" xsi:type="string">faq/icon</argument>
+			<argument name="allowedExtensions" xsi:type="array">
+				<item name="jpg" xsi:type="string">jpg</item>
+				<item name="jpeg" xsi:type="string">jpeg</item>
+				<item name="gif" xsi:type="string">gif</item>
+				<item name="png" xsi:type="string">png</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

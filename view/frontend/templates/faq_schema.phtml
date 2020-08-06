@@ -1,0 +1,48 @@
+<?php
+/**
+ * ImranAli
+ * Copyright (C) 2020 ImranAli <imibrohi@gmail.com>
+ *
+ * @package ImranAli_Faq
+ * @copyright Copyright (c) 2020 ImranAli
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author ImranAli <imibrohi@gmail.com>
+ */
+?>
+<?php
+/** @var $block \ImranAli\Faq\Block\Index\Index */
+$faqGroupCollection = $block->getFaqGroupCollection();
+?>
+<?php if ($faqGroupCollection->getSize()) : ?>
+    <?php if ($block->isEnable()) : ?>
+    <?php 
+        $faqCollectionArray = array(
+            "@context" => "https://schema.org",
+            "@type" => "FAQPage",
+            //"mainEntity" => array(),
+        );
+    ?>   
+    <?php foreach ($faqGroupCollection as $group) : ?>
+            <?php $faqCollection = $block->getFaqCollection($group->getId()); ?>
+                <?php if ($faqCollection->getSize()) : ?>
+                    <?php foreach ($faqCollection as $faq) : ?>
+                       <?php 
+                        $faqArray = array (
+                            '@type' => 'Question',
+                            'name' => __($faq->getTitle()),
+                            'acceptedAnswer' => 
+                            array (
+                              '@type' => 'Answer',
+                              'text' => $block->filterOutputHtml($faq->getContent()),
+                            ),
+                          );
+                        //Create faq collection array for google schema
+                        $faqCollectionArray['mainEntity'][] = $faqArray;
+                       ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+    <?php endforeach; ?>
+    <?php //print '<pre>';print_r($faqCollectionArray);?>
+    <script type="application/ld+json"><?php echo json_encode($faqCollectionArray);?></script>
+    <?php endif; ?>
+<?php endif; ?>
